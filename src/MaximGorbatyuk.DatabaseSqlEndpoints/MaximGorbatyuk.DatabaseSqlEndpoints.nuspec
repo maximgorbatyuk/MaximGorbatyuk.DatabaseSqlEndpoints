@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package >
   <metadata>
-	  <id>MaximGorbatyuk.Utils.AspNetCore.DatabaseView</id>
+	  <id>MaximGorbatyuk.DatabaseSqlEndpoints</id>
 	  <version>1.0.4</version>
-	  <title>MaximGorbatyuk.Utils.AspNetCore - useful classes for cut your routine</title>
+	  <title>MaximGorbatyuk.DatabaseSqlEndpoints for executing SQL commands</title>
 	  <authors>@maximgorbatyuk</authors>
 	  <requireLicenseAcceptance>false</requireLicenseAcceptance>
 	  <license type="expression">MIT</license>
-	  <projectUrl>https://github.com/maximgorbatyuk/MG.Utils</projectUrl>
-	  <description>Useful classes for cut your routine with ASP.Net core</description>
+	  <projectUrl>https://github.com/maximgorbatyuk/MaximGorbatyuk.DatabaseSqlEndpoints</projectUrl>
+	  <description>This nuget allows you to view table content of your ASP.NET core application during runtime</description>
 	  <releaseNotes>First release.</releaseNotes>
 	  <copyright>Copyright (c) @maximgorbatyuk, 2021</copyright>
 	  <dependencies>
