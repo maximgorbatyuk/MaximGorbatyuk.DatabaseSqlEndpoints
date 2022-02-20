@@ -1,0 +1,34 @@
+name: Publish nuget
+
+on:
+  push:
+    tags:
+    - "v[0-9]+.[0-9]+.[0-9]+"
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      project: MaximGorbatyuk.DatabaseSqlEndpoints
+      project-file: ./src/MaximGorbatyuk.DatabaseSqlEndpoints/MaximGorbatyuk.DatabaseSqlEndpoints.csproj
+      nuget-pgk-link: https://nuget.pkg.github.com/maximgorbatyuk/index.json
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Set VERSION variable from tag
+      run: echo "VERSION=${GITHUB_REF/refs\/tags\/v/}" >> $GITHUB_ENV
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: "6.0.x"
+    - name: Go to project folder
+      run: cd src && cd ${{env.project}}
+    - name: Build
+      run: dotnet build --configuration Release /p:Version=${VERSION}
+    - name: Test
+      run: dotnet test --configuration Release /p:Version=${VERSION} --no-build
+    - name: Pack
+      run: dotnet pack --configuration Release /p:Version=${VERSION} --no-build --output .
+    - name: Push
+      run: dotnet nuget push ${{env.project}}.${VERSION}.nupkg --source ${{env.nuget-pgk-link}} --api-key ${{secrets.NUGET_API_KEY}}
+        

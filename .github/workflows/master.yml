@@ -7,20 +7,6 @@ on:
     branches: [main]
 
 jobs:
-  Build:
-    runs-on: ubuntu-latest
-    env:
-      solution-file: ./src/MaximGorbatyuk.DatabaseSqlEndpoints.sln
-    steps:
-      - uses: actions/checkout@v2
-      - name: Backend build and test
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: "6.0.x"
-      - name: Install dependencies
-        run: dotnet restore ${{env.solution-file}}
-      - name: Build
-        run: dotnet build ${{env.solution-file}} --configuration Release --no-restore
   Test:
     runs-on: ubuntu-latest
     env:
