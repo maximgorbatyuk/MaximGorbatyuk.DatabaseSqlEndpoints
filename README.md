@@ -4,10 +4,10 @@ This nuget allows you to view table content of your ASP.NET core application dur
 
 ## Get started
 
-1. Install the [nuget](https://www.nuget.org/packages/MaximGorbatyuk.Utils.AspNetCore.DatabaseView):
+1. Install the [nuget](https://www.nuget.org/packages/MaximGorbatyuk.DatabaseSqlEndpoints/):
 
 ```bash
-dotnet add package MaximGorbatyuk.Utils.AspNetCore.DatabaseView
+dotnet add package MaximGorbatyuk.DatabaseSqlEndpoints
 ```
 
 2. Add routing line into your `Startup.cs` file before UseEndpoints():
