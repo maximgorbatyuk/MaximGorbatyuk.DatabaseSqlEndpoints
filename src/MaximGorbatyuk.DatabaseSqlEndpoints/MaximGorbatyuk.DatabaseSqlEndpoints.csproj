@@ -3,12 +3,13 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <LangVersion>latest</LangVersion>
+    <Version>1.0.1</Version>
     <Company>@maximgorbatyuk</Company>
     <Copyright>Copyright © @maximgorbatyuk</Copyright>
-    <RepositoryUrl>https://github.com/maximgorbatyuk/MG.Utils</RepositoryUrl>
-    <PackageProjectUrl>https://github.com/maximgorbatyuk/MG.Utils</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/maximgorbatyuk/MaximGorbatyuk.DatabaseSqlEndpoints</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/maximgorbatyuk/MaximGorbatyuk.DatabaseSqlEndpoints</PackageProjectUrl>
     <PackageLicenseFile></PackageLicenseFile>
-    <Description>Useful utilities for the ASP</Description>
+    <Description>With this nuget you will be able to execute SQL scripts in your Web Application</Description>
     <Product>Web app utils</Product>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
