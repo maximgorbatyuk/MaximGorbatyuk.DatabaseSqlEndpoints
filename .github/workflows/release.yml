@@ -24,11 +24,11 @@ jobs:
     #- name: Go to project folder
     #  run: cd src && cd ${{env.project}}
     - name: Build
-      run: dotnet build --configuration Release /p:Version=${VERSION}
+      run: dotnet build --configuration Release /p:Version=${VERSION} --project ${{env.project-file}}
     - name: Test
-      run: dotnet test --configuration Release /p:Version=${VERSION} --no-build
+      run: dotnet test --configuration Release /p:Version=${VERSION} --no-build  --project ${{env.project-file}}
     - name: Pack
-      run: dotnet pack --configuration Release /p:Version=${VERSION} --no-build --output .
+      run: dotnet pack --configuration Release /p:Version=${VERSION}  --project ${{env.project-file}} --no-build --output .
     - name: Push
       run: dotnet nuget push ${{env.project}}.${VERSION}.nupkg --source ${{env.nuget-pgk-link}} --api-key ${{secrets.NUGET_API_KEY}}
         
