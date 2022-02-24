@@ -1,5 +1,7 @@
 # MaximGorbatyuk.DatabaseSqlEndpoints
 
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/maximgorbatyuk/MaximGorbatyuk.DatabaseSqlEndpoints/Build%20and%20test) ![Nuget](https://img.shields.io/nuget/dt/MaximGorbatyuk.DatabaseSqlEndpoints) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/maximgorbatyuk/MaximGorbatyuk.DatabaseSqlEndpoints) ![GitHub](https://img.shields.io/github/license/maximgorbatyuk/MaximGorbatyuk.DatabaseSqlEndpoints)
+
 This nuget allows you to view table content of your ASP.NET core application during runtime. The nuget creates a special endpoint and then return tables and data represented in html form.
 
 ## Get started
