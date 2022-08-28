@@ -13,10 +13,18 @@ namespace MaximGorbatyuk.DatabaseSqlEndpoints.Middlewares
         {
         }
 
-        protected override async Task<string> ResponseContentAsync(string query, HttpContext httpContext, TDbContext context)
+        protected override async Task<string> ResponseContentAsync(
+            string query,
+            HttpContext httpContext,
+            TDbContext context)
         {
             return new DataTableTextOutput(
-                await new ReadTableSqlCommand<TDbContext>(query, context).AsDataTableAsync()).AsText();
+                await new ReadTableSqlCommand<TDbContext>(
+                        query,
+                        context,
+                        Settings.TimeoutSec)
+                    .AsDataTableAsync())
+                .AsText();
         }
     }
 }

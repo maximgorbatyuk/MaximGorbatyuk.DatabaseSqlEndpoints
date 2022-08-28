@@ -23,7 +23,7 @@ class Startup
         // ... some settings
 
         app
-            .UseDatabaseTable<AwesomeDbContext>() 
+            .UseSqlEndpoints<AwesomeDbContext>() 
             .UseTableOutputEndpoint() // default route is /database-sql-endpoints/table
             .UseReadEndpoint() // default route is /database-sql-endpoints/read
             .UseExecuteEndpoint(); // default route is /database-sql-endpoints/execute
@@ -49,11 +49,11 @@ Open `https:localhost:5001/database-sql-endpoints/table?tableName=<tableName>` i
 
 Send the following POST request:
 
-```plaintext
+```bash
 
 POST https:localhost:5001/database-sql-endpoints/read
 
-BODY Json:
+BODY:
 {
     "query": "select 1;"
 }
@@ -64,11 +64,11 @@ BODY Json:
 
 Send the following POST request:
 
-```plaintext
+```bash
 
 POST https:localhost:5001/database-sql-endpoints/execute
 
-BODY Json:
+BODY:
 {
     "query": "delete fronm users;"
 }

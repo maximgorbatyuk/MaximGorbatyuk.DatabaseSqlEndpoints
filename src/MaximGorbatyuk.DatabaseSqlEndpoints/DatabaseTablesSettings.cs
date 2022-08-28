@@ -45,13 +45,22 @@ namespace MaximGorbatyuk.DatabaseSqlEndpoints
 
         public SqlEngine SqlEngine { get; }
 
-        public DatabaseTablesSettings(IApplicationBuilder app, int? port, bool checkForAuthentication, string roleToCheckForAuthorization, SqlEngine sqlEngine)
+        public int TimeoutSec { get; }
+
+        public DatabaseTablesSettings(
+            IApplicationBuilder app,
+            int? port,
+            bool checkForAuthentication,
+            string roleToCheckForAuthorization,
+            SqlEngine sqlEngine,
+            int timeoutSec = Constants.DefaultSqlCommandTimeoutSec)
         {
             App = app;
             Port = port;
             CheckForAuthentication = checkForAuthentication;
             RoleToCheckForAuthorization = roleToCheckForAuthorization;
             SqlEngine = sqlEngine;
+            TimeoutSec = timeoutSec;
         }
     }
 }

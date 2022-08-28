@@ -13,8 +13,12 @@ namespace MaximGorbatyuk.DatabaseSqlEndpoints.Middlewares
         {
         }
 
-        protected override async Task<string> ResponseContentAsync(string query, HttpContext httpContext, TDbContext context)
+        protected override async Task<string> ResponseContentAsync(
+            string query,
+            HttpContext httpContext,
+            TDbContext context)
         {
+            context.Database.SetCommandTimeout(Settings.TimeoutSec);
             var result = await context.Database.ExecuteSqlRawAsync(query);
             return $"Rows affected: {result}";
         }

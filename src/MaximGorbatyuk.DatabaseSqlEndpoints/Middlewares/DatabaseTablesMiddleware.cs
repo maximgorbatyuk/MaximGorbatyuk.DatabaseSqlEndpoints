@@ -10,14 +10,22 @@ namespace MaximGorbatyuk.DatabaseSqlEndpoints.Middlewares
     public class DatabaseTablesMiddleware<TDbContext> : DatabaseTableBaseMiddleware<TDbContext>
         where TDbContext : DbContext
     {
-        public DatabaseTablesMiddleware(RequestDelegate next, IOptions<IDatabaseTablesSettingsBase> settingsBase)
+        public DatabaseTablesMiddleware(
+            RequestDelegate next,
+            IOptions<IDatabaseTablesSettingsBase> settingsBase)
             : base(next, settingsBase)
         {
         }
 
-        private async Task<string> PageAsync(TDbContext db, string tableName)
+        private async Task<string> PageAsync(
+            TDbContext db,
+            string tableName)
         {
-            var table = await new ReadTableSqlCommand<TDbContext>(query: $"SELECT * FROM {tableName}", db).AsDataTableAsync();
+            var table = await new ReadTableSqlCommand<TDbContext>(
+                    query: $"SELECT * FROM {tableName}",
+                    db,
+                    Settings.TimeoutSec)
+                .AsDataTableAsync();
 
             return new DataTableTextOutput(table).AsText();
         }

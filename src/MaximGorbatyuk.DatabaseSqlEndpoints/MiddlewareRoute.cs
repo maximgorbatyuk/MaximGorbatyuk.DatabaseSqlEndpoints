@@ -16,7 +16,11 @@ namespace MaximGorbatyuk.DatabaseSqlEndpoints
         private readonly PathString _path;
         private readonly IDatabaseTablesSettings<TDbContext> _settings;
 
-        public MiddlewareRoute(IDatabaseTablesSettings<TDbContext> settings, PathString path, string methodName, string defaultPathRoute)
+        public MiddlewareRoute(
+            IDatabaseTablesSettings<TDbContext> settings,
+            PathString path,
+            string methodName,
+            string defaultPathRoute)
         {
             _path = !path.HasValue ? new PathString(defaultPathRoute) : path;
 

@@ -10,8 +10,12 @@ namespace MaximGorbatyuk.DatabaseSqlEndpoints
     {
         private readonly string _query;
         private readonly TContext _context;
+        private readonly int _timeoutSeconds;
 
-        public ReadTableSqlCommand(string query, TContext context)
+        public ReadTableSqlCommand(
+            string query,
+            TContext context,
+            int? timeoutSeconds)
         {
             if (string.IsNullOrEmpty(query))
             {
@@ -20,6 +24,7 @@ namespace MaximGorbatyuk.DatabaseSqlEndpoints
 
             _query = query;
             _context = context;
+            _timeoutSeconds = timeoutSeconds ?? Constants.DefaultSqlCommandTimeoutSec;
         }
 
         public async Task<DataTable> AsDataTableAsync()
@@ -30,12 +35,13 @@ namespace MaximGorbatyuk.DatabaseSqlEndpoints
                 await using var cmd = _context.Database.GetDbConnection().CreateCommand();
 
 #pragma warning disable CA2100
+                cmd.CommandTimeout = _timeoutSeconds;
                 cmd.CommandText = _query;
 #pragma warning restore CA2100
 
                 if (cmd.Connection is not null)
                 {
-                    await cmd.Connection?.OpenAsync();
+                    await cmd.Connection.OpenAsync();
                     table.Load(await cmd.ExecuteReaderAsync());
                 }
 
