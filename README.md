@@ -1,5 +1,7 @@
 # MaximGorbatyuk.DatabaseSqlEndpoints
 
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/maximgorbatyuk/MaximGorbatyuk.DatabaseSqlEndpoints/Build%20and%20test) ![Nuget](https://img.shields.io/nuget/dt/MaximGorbatyuk.DatabaseSqlEndpoints) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/maximgorbatyuk/MaximGorbatyuk.DatabaseSqlEndpoints) ![GitHub](https://img.shields.io/github/license/maximgorbatyuk/MaximGorbatyuk.DatabaseSqlEndpoints)
+
 This nuget allows you to view table content of your ASP.NET core application during runtime. The nuget creates a special endpoint and then return tables and data represented in html form.
 
 ## Get started
@@ -21,7 +23,7 @@ class Startup
         // ... some settings
 
         app
-            .UseDatabaseTable<AwesomeDbContext>() 
+            .UseSqlEndpoints<AwesomeDbContext>() 
             .UseTableOutputEndpoint() // default route is /database-sql-endpoints/table
             .UseReadEndpoint() // default route is /database-sql-endpoints/read
             .UseExecuteEndpoint(); // default route is /database-sql-endpoints/execute
@@ -47,11 +49,11 @@ Open `https:localhost:5001/database-sql-endpoints/table?tableName=<tableName>` i
 
 Send the following POST request:
 
-```plaintext
+```bash
 
 POST https:localhost:5001/database-sql-endpoints/read
 
-BODY Json:
+BODY:
 {
     "query": "select 1;"
 }
@@ -62,11 +64,11 @@ BODY Json:
 
 Send the following POST request:
 
-```plaintext
+```bash
 
 POST https:localhost:5001/database-sql-endpoints/execute
 
-BODY Json:
+BODY:
 {
     "query": "delete fronm users;"
 }

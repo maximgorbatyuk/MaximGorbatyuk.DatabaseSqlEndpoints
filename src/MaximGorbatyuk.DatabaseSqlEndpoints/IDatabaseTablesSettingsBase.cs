@@ -14,6 +14,8 @@ namespace MaximGorbatyuk.DatabaseSqlEndpoints
 
         SqlEngine SqlEngine { get; }
 
+        int TimeoutSec { get; }
+
         bool HasRole => RoleToCheckForAuthorization is not null;
     }
 }
