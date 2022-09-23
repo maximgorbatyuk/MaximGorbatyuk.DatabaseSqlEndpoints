@@ -30,7 +30,10 @@ namespace MaximGorbatyuk.DatabaseSqlEndpoints
 
         public IDatabaseTablesSettings<TDbContext> Setup()
         {
-            _settings.App.MapWhen(Condition, b => b.UseMiddleware<TMiddleware>(Options.Create((IDatabaseTablesSettingsBase)_settings)));
+            _settings.App.MapWhen(
+                Condition,
+                b => b.UseMiddleware<TMiddleware>(
+                    Options.Create((IDatabaseTablesSettingsBase)_settings)));
             return _settings;
         }
 

@@ -8,7 +8,9 @@ namespace MaximGorbatyuk.DatabaseSqlEndpoints.Middlewares
     public class ReadSQlMiddleware<TDbContext> : BasePostRequestMiddleware<TDbContext>
         where TDbContext : DbContext
     {
-        public ReadSQlMiddleware(RequestDelegate next, IOptions<IDatabaseTablesSettingsBase> settingsBase)
+        public ReadSQlMiddleware(
+            RequestDelegate next,
+            IOptions<IDatabaseTablesSettingsBase> settingsBase)
             : base(next, settingsBase)
         {
         }
