@@ -8,12 +8,17 @@ namespace MaximGorbatyuk.DatabaseSqlEndpoints.Middlewares
     public abstract class DatabaseTableBaseMiddleware<TDbContext>
         where TDbContext : DbContext
     {
+        protected const string DefaultContentType = "text/plain; charset=UTF-8";
+
         private readonly RequestDelegate _next;
         private readonly string _contentType;
 
         protected IDatabaseTablesSettingsBase Settings { get; }
 
-        protected DatabaseTableBaseMiddleware(RequestDelegate next, IOptions<IDatabaseTablesSettingsBase> settingsBase, string contentType = "text/plain; charset=UTF-8")
+        protected DatabaseTableBaseMiddleware(
+            RequestDelegate next,
+            IOptions<IDatabaseTablesSettingsBase> settingsBase,
+            string contentType = DefaultContentType)
         {
             _next = next;
             _contentType = contentType;

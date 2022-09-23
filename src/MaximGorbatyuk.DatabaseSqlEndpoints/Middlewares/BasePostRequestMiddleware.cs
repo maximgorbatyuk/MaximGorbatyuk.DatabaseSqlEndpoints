@@ -51,7 +51,10 @@ namespace MaximGorbatyuk.DatabaseSqlEndpoints.Middlewares
             }
         }
 
-        protected abstract Task<string> ResponseContentAsync(string query, HttpContext httpContext, TDbContext context);
+        protected abstract Task<string> ResponseContentAsync(
+            string query,
+            HttpContext httpContext,
+            TDbContext context);
 
         public record SqlRequest
         {
