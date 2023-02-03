@@ -10,7 +10,7 @@ jobs:
   Test:
     runs-on: ubuntu-latest
     env:
-      solution-file: ./src/MaximGorbatyuk.DatabaseSqlEndpoints.sln
+      solution-file: MaximGorbatyuk.DatabaseSqlEndpoints.sln
     steps:
       - uses: actions/checkout@v2
       - name: Backend build and test
