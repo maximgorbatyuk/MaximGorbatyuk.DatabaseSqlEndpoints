@@ -9,31 +9,38 @@ jobs:
     timeout-minutes: 15
     env:
       project: MaximGorbatyuk.DatabaseSqlEndpoints
-      project-folder: ./src/MaximGorbatyuk.DatabaseSqlEndpoints
-      project-file: src/MaximGorbatyuk.DatabaseSqlEndpoints/MaximGorbatyuk.DatabaseSqlEndpoints.csproj
-      nuget-pgk-link: https://nuget.pkg.github.com/maximgorbatyuk/index.json
+      PROJECT_FOLDER: ./MaximGorbatyuk.DatabaseSqlEndpoints
+      PROJECT_FILE: MaximGorbatyuk.DatabaseSqlEndpoints/MaximGorbatyuk.DatabaseSqlEndpoints.csproj
+      NUGET_PKG_LINK: https://nuget.pkg.github.com/maximgorbatyuk/index.json
     steps:
     - name: Checkout
       uses: actions/checkout@v2
+
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: "6.0.x"
+
+    - name: Set version
+      run: |
+       echo "Buid version is ${{github.run_number}}"
+       sed -i "s/\(<Version>\([0-9]\+\.\)\{2\}\)\([0-9]\+\)/\1${{github.run_number}}/" ${{env.PROJECT_FILE}}
+
     - name: Build
-      working-directory: ${{env.project-folder}}
+      working-directory: ${{env.PROJECT_FOLDER}}
       run: dotnet build --configuration Release
+
     - name: Test
-      working-directory: ${{env.project-folder}}
-      run: dotnet test --configuration Release --no-build 
+      working-directory: ${{env.PROJECT_FOLDER}}
+      run: dotnet test --configuration Release --no-build
+
     - name: Pack
-      working-directory: ${{env.project-folder}}
+      working-directory: ${{env.PROJECT_FOLDER}}
       run: dotnet pack --configuration Release --no-build --output .
-    #- name: Push
-    #  working-directory: ${{env.project-folder}}
-    #  run: dotnet nuget push ${{env.project}}.${VERSION}.nupkg --source ${{env.nuget-pgk-link}} --api-key ${{secrets.NUGET_API_KEY}}
+
     - name: Publish nuget package
       uses: brandedoutcast/publish-nuget@v2.5.2
       with:
-          PROJECT_FILE_PATH: ${{env.project-file}}
+          PROJECT_FILE_PATH: ${{env.PROJECT_FILE}}
           NUGET_KEY: ${{secrets.NUGET_API_KEY}}
         
